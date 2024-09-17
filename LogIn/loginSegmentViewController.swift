@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class loginSegmentViewController: UIViewController {
 
@@ -15,13 +16,19 @@ class loginSegmentViewController: UIViewController {
     @IBOutlet weak var password: UITextField!
     
     @IBAction func signIn(_ sender: Any) {
+        let email1 = email.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        let password2 = password.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         
-        if email.text == password.text{
-            lbl2.text = "Log in succsessful"
-        }
-        else{
-            lbl2.text = " Please Register first"
-        }
+        Auth.auth().signIn(withEmail: email1, password: password2, completion: {r,e in
+            if e != nil{
+                self.lbl2.text = "wrong credencials"
+            }
+            else{
+                let homeController = self.storyboard?.instantiateViewController(withIdentifier: "home")
+                self.view.window?.rootViewController = homeController
+                self.view.window?.makeKeyAndVisible()
+            }
+        })
     }
     
     

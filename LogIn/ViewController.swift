@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class ViewController: UIViewController {
 
@@ -19,6 +20,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         self.view.bringSubviewToFront(logInCon)
     }
+    
+    
+
 
     @IBAction func segmenting(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
